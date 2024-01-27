@@ -1,0 +1,25 @@
+/* Home.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.home-container {
+    border: 2px solid #ddd; /* Màu và độ rộng của đường viền */
+    border-radius: 8px; /* Độ cong của các góc */
+    overflow: hidden; /* Ngăn chặn nội dung tràn ra khỏi khung */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

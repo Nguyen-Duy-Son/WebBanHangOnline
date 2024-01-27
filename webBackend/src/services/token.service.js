@@ -40,10 +40,8 @@ const createAuthTokens = async (user) => {
     saveToken(accessToken, tokenTypes.ACCESS, user.id, expires);
 
     return {
-        access: {
-            token: accessToken,
-            expires: expires,
-        },
+        token: accessToken,
+        expires: expires,
     };
 };
 

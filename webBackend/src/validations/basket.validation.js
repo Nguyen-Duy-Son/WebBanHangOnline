@@ -3,7 +3,7 @@ const {objectId} = require('./custom.validation')
 
 const createBasket = {
     body: Joi.object().keys({
-        userId: Joi.string().required(),
+        userId: Joi.string().custom(objectId).required(),
         purchasedProducts:Joi.array().items({
             productId:Joi.string().custom(objectId),
             numberOfProduct:Joi.number().integer()
@@ -27,11 +27,11 @@ const getBasketByUserId = {
 };
 const updateBasket = {
     params: Joi.object().keys({
-        userId: Joi.required().custom(objectId),
+        userId: Joi.string().custom(objectId).required(),
     }),
     body: Joi.object()
         .keys({
-            userId: Joi.required().custom(objectId),
+            userId: Joi.string().custom(objectId).required(),
             purchasedProducts:Joi.array().items({
                 productId:Joi.string().custom(objectId),
                 numberOfProduct:Joi.number().integer()
@@ -41,7 +41,7 @@ const updateBasket = {
 };
 const deleteBasket = {
     params: Joi.object().keys({
-        userId: Joi.string().custom(objectId),
+        userId: Joi.string().custom(objectId).required(),
     }),
 };
 const addOrDeleteProductToBasketOfUser ={

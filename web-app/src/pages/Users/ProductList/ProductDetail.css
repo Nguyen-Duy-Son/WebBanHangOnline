@@ -1,0 +1,59 @@
+/* ProductDetail.css */
+
+.product_item-title {
+    padding-top: 15px;
+}
+
+.product_item-detail {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.product_item-detail img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product_item-detail .product_item-detail-content {
+    flex: 1;
+    padding: 0 20px;
+    text-align: left; /* Căn văn bản về bên trái */
+}
+
+.product_item-detail p {
+    font-size: 18px;
+    color: #333; /* Màu sắc thích hợp cho văn bản */
+    margin-bottom: 10px;
+}
+
+.product_item-detail b {
+    color: #333; /* Màu sắc cho văn bản đậm (bold) */
+}
+
+.buy-button, .buy_button-detail {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s; /* Hiệu ứng chuyển đổi màu sắc */
+}
+
+.buy-button:hover, .buy_button-detail:hover {
+    background-color: #45a049; /* Màu sắc tối hơn khi hover */
+}
+
+.product_item-detail p:last-child {
+    margin-bottom: 0; /* Loại bỏ khoảng trắng dư thừa cho phần tử cuối cùng */
+}

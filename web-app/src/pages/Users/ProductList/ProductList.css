@@ -1,0 +1,94 @@
+/* styles.css (hoặc tên file CSS của bạn)
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .product-item {
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .product-item h2 {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  
+  .product-item p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #666;
+  }
+   */
+   /* ProductList.css */
+
+/* ProductList.css */
+
+/* ProductList.css */
+
+.product-list-container {
+  padding: 20px;
+}
+
+.product-list-content {
+  font-size: 18px;
+  background-color: #ddd; /* Adjust the background color as needed */
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Align items in a row */
+}
+
+.product-item {
+  flex-basis: calc(33.33% - 20px); /* Adjust the percentage and margin as needed */
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.button-container {
+  margin-top: 10px;
+}
+
+.buy-button, .detail-button {
+  background-color: #4CAF50; /* Green background color */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.detail-button {
+  background-color: #008CBA; /* Blue background color for details button */
+}
+
+.buy-button:hover, .detail-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+

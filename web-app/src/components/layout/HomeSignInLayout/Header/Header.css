@@ -1,0 +1,134 @@
+.header-menu ul li {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    width: 15%;
+    transition: background-color 0.3s ease;
+}
+
+.header-menu ul li:hover {
+    background-color: #c4dec5;
+    color: #42d4d7; 
+}
+.sliver_img{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 50px 0 50px;
+}
+.sliver_img img{
+    object-fit: contain;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: auto; 
+    box-shadow: 0px 5px 5px #4a4a4a;
+    border: 1px solid black;
+}
+.slider_img img.visible {
+    opacity: 1;
+    z-index: 1;
+}
+.container-top{
+    width: 30%;
+}
+.login-signup{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.login-signup-click{
+    background-color: #555f96;
+    border-radius: 5px;
+    display: flex;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+}
+.login-signup a:hover {
+    color: #a8aaa8;
+}
+/* Add styling for user-info */
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info .avatar {
+    width: 30px; /* Adjust the size of the avatar as needed */
+    height: 30px; /* Adjust the size of the avatar as needed */
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.user-info .user-name {
+    font-size: 16px; /* Adjust the font size as needed */
+    font-weight: bold;
+}
+
+/* Rest of your existing styles... */
+.header-menu ul li {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    width: 15%;
+    transition: background-color 0.3s ease;
+}
+
+.header-menu ul li:hover {
+    background-color: #c4dec5;
+    color: #42d4d7; 
+}
+.sliver_img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 50px 0 50px;
+}
+
+.sliver_img img {
+    object-fit: contain;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: auto; 
+    box-shadow: 0px 5px 5px #4a4a4a;
+    border: 1px solid black;
+}
+
+.slider_img img.visible {
+    opacity: 1;
+    z-index: 1;
+}
+
+.container-top {
+    width: 30%;
+}
+
+.login-signup {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.login-signup-click {
+    background-color: #555f96;
+    border-radius: 5px;
+    display: flex;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+}
+
+.login-signup a:hover {
+    color: #a8aaa8;
+}

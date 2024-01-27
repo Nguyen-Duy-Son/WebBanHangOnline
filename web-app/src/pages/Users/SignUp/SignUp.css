@@ -1,0 +1,11 @@
+.mb-4 label{
+    color: rgb(233, 53, 83);
+}
+.logout-button {
+    background-color: #ff0000;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
