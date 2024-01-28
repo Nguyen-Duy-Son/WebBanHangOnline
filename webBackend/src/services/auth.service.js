@@ -3,12 +3,12 @@ const ApiError = require('../utils/ApiError');
 const { User, Token } = require('../models');
 const tokenTypes = require('../config/tokens');
 
-const login = async (username, password) => {
+const login = async (email, password) => {
     const user = await User.findOne({
-        username,
+        email,
     }).select('+password');
     if (!user || !(await user.isPasswordMatch(password))) {
-        throw new ApiError(httpStatus.NOT_FOUND, 'Username or password is incorrect!');
+        throw new ApiError(httpStatus.NOT_FOUND, 'Email or password is incorrect!');
     }
     return user;
 };
