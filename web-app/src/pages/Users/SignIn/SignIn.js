@@ -3,6 +3,7 @@ import loginImg from '../../../assets/images/xay-dung-website-ban-hang.jpg';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../services/auth.service';
 import { getUserByEmail } from '../../../services/user.service';
+import {  getItem,setItem } from '../../../components/LocalStorage/LocalStorage';
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,8 +24,8 @@ export default function Login() {
             setIsSubmitting(false);
             const response = await getUserByEmail(email);
             const user = response.data;
-            localStorage.setItem('user', JSON.stringify(user));
-            localStorage.setItem('accessToken', JSON.stringify(accessToken));
+            setItem('user',user);
+            setItem('accessToken', accessToken);
             alert('Login Successful');
             navigate('/');
         } catch (error) {

@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import logo from '~/assets/images/LogoGiaHan.jpg';
 import { Link, useNavigate } from 'react-router-dom';
+import { setItem, getItem, removeItem } from '../../../LocalStorage/LocalStorage';
 import './Header.css';
 
 const Header = () => {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
-    const [accessToken, setAccessToken] = useState(JSON.parse(localStorage.getItem('accessToken')));
+    const [user, setUser] = useState(getItem("user"));
+    const [accessToken, setAccessToken] = useState(getItem('accessToken'));
     const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem('user');
-        localStorage.removeItem('accessToken');
+        removeItem('user');
+        removeItem('accessToken');
         setUser(null);
         setAccessToken(null);
-        navigate("/") 
+        navigate("/");
     };
 
     const itemMenu = [

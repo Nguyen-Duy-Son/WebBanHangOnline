@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { getBasketByUserId } from '~/services/basket.service';
 import ProductOfBasket from './ProductOfBasket';
+import {  getItem } from '../../../components/LocalStorage/LocalStorage';
 const Basket = () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const accessToken = JSON.parse(localStorage.getItem('accessToken'));
+    const user = getItem('user');
+    const accessToken = getItem('accessToken');
     const [products,setProuducts] = useState([]);
     useEffect(() => {
         const fetchData = async () => {

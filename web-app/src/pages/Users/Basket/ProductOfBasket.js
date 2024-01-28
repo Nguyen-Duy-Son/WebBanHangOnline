@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getProductById } from '../../../services/product.service';
 import { addOrDeleteProductOfBasket } from '../../../services/basket.service';
+import {  getItem } from '../../../components/LocalStorage/LocalStorage';
 import './ProductOfBasket.css';
 
 const ProductOfBasket = ({ props }) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const accessToken = JSON.parse(localStorage.getItem('accessToken'));
+  const user = getItem('user');
+  const accessToken = getItem('accessToken');
   const [product, setProduct] = useState([]);
   const [number, setNumber] = useState(props.numberOfProduct);
 

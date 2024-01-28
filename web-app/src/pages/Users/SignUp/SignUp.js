@@ -43,10 +43,7 @@ const SignUpForm = () => {
         confirmPassword,
       };
       const response = await register(data);
-      const user = response.data;
       const accessToken = response.accessToken;
-      localStorage.setItem('user',JSON.stringify(user));
-      localStorage.setItem('accessToken',JSON.stringify(accessToken));
       const userData = await getUserByEmail(email);
       if(accessToken){
         const basketOfUser = await createBasketOfUser(userData.data.id,accessToken.token);
