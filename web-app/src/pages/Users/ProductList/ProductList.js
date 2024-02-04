@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { getAllProducts } from '../../../services/product.service';
+import {addOrDelete} from '../../../services/basket.service'
 import ProductItem from './Product';
 import './ProductList.css';
 import { useNavigate } from 'react-router-dom';
+import { getItem } from '../../../components/LocalStorage/LocalStorage';
 
-const ProductList = ({user}) => {
+const ProductList = () => {
+    // const {user,accessToken} = getItem();
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {

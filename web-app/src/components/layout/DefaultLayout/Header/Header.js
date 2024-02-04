@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import logo from '~/assets/images/LogoGiaHan.jpg';
 import { Link, useNavigate } from 'react-router-dom';
 import { setItem, getItem, removeItem } from '../../../LocalStorage/LocalStorage';
@@ -7,6 +7,8 @@ import './Header.css';
 const Header = () => {
     const [user, setUser] = useState(getItem("user"));
     const [accessToken, setAccessToken] = useState(getItem('accessToken'));
+    console.log(accessToken);
+    
     const navigate = useNavigate();
     const handleLogout = () => {
         removeItem('user');
@@ -15,7 +17,25 @@ const Header = () => {
         setAccessToken(null);
         navigate("/");
     };
-
+    useEffect(() => {
+        const checkTokenExpiration = () => {
+          if (accessToken && accessToken.expiry) {
+            const currentTimestamp = Math.floor(Date.now() / 1000);
+            const tokenExpiration = accessToken.expiry;
+      
+            if (currentTimestamp > tokenExpiration) {
+              // Token đã hết hạn, xóa người dùng và token truy cập
+              removeItem('user');
+              removeItem('accessToken');
+              setUser(null);
+              setAccessToken(null);
+              navigate('/');
+            }
+          }
+        };
+      
+        checkTokenExpiration();
+      }, [accessToken]);
     const itemMenu = [
         'Trang Chủ',
         'Sản Phẩm',

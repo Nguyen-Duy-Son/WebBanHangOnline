@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getProductById } from '../../../services/product.service';
 import { useParams } from 'react-router-dom';
+import { getProductById } from '../../../services/product.service';
+import { getItem } from "../../../components/LocalStorage/LocalStorage";
 import './ProductDetail.css';
 import ProductList from './ProductList';
 const ProductDetail = () => {
+    // const user = getItem('user');
+    // const accessToken = getItem('accessToken');
+    // console.log(user);
     const [product, setProduct] = useState(null);
     const { id } = useParams();
     useEffect(() => {
