@@ -4,12 +4,12 @@ const pick = require('../utils/pick')
 const catchAsync = require('../utils/catchAsync')
 
 const getProducts = catchAsync(async(req,res,next)=>{
-    const filter = pick(req.query, ['userId']);
-    const options = pick(req.query, ['sortBy', 'limit', 'page']);
-    const product = await productService.getProducts(filter, options);
+    // const filter = pick(req.query, ['nameBrand']);
+    // const options = pick(req.query, ['sortBy', 'limit', 'page']);
+    const product = await productService.getProducts();
     res.status(httpStatus.OK).json({
         code: httpStatus.OK,
-        message: 'Get Product successfully!',
+        message: 'Get Products successfully!',
         data: product,
     });
 })

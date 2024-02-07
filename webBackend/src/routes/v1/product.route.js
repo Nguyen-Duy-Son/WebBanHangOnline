@@ -9,7 +9,8 @@ const productRouter = express.Router();
 
 productRouter
   .route("/")
-  .get(validate(productValidation.getProducts), productController.getProducts);
+  // .get(validate(productValidation.getProducts), productController.getProducts);
+  .get(productController.getProducts);
 productRouter
   .route("/:productId")
   .get(

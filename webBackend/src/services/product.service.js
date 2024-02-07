@@ -9,7 +9,8 @@ const getProduct = async(productId)=>{
 }
 
 const getProducts = async (filter, options) => {
-    const products = await Product.paginate(filter, options);
+    // const products = await Product.paginate(filter, options);
+    const products = await Product.find();
     if (!products || products.length === 0) {
         throw new ApiError(httpStatus.NOT_FOUND, 'Products not found');
     }
