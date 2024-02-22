@@ -11,7 +11,7 @@ import "./Header.css";
 const Header = () => {
   const [user, setUser] = useState(getItem("user"));
   const [accessToken, setAccessToken] = useState(getItem("accessToken"));
-  console.log(accessToken);
+  // console.log(accessToken);
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -21,19 +21,18 @@ const Header = () => {
     setAccessToken(null);
     navigate("/");
   };
-  useEffect(() => {
+  const checkToken = () => {
     const tokenExpiration = accessToken?.expires;
     const currentTimestamp = Math.floor(Date.now() / 1000);
 
-    if (tokenExpiration && currentTimestamp > tokenExpiration) {
-      // Token đã hết hạn, xóa người dùng và token truy cập
+    if (currentTimestamp > tokenExpiration) {
       removeItem("user");
       removeItem("accessToken");
       setUser(null);
       setAccessToken(null);
       navigate("/");
     }
-  }, [accessToken, navigate]);
+  }
   const itemMenu = [
     "Trang Chủ",
     "Sản Phẩm",
@@ -50,7 +49,7 @@ const Header = () => {
           <img src={logo} alt="Logo Shop" className="w-5/6 h-full mr-2" />
         </Link>
         <div className="container-top">
-          {user ? (
+          {user&&checkToken() ? (
             <div className="user-info">
               <img
                 src={
