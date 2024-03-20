@@ -73,6 +73,15 @@ const addOrDeleteProductToBasket= catchAsync(async(req,res)=>{
     }
     
 });
+const getTotalCostOfUser = catchAsync(async (req, res, next) => {
+    const { userId } = req.params;
+    const totalCost = await basketService.totalMoneyOfUser(userId);
+    res.status(httpStatus.OK).json({
+        code: httpStatus.OK,
+        message: 'get totalCost successfully!',
+        totalCost:totalCost,
+    });
+});
 module.exports = {
     getBaskets,
     getBasketByUserId,
@@ -80,5 +89,6 @@ module.exports = {
     updateBasket,
     deleteBasket,
     addOrDeleteProductToBasket,
+    getTotalCostOfUser
 };
 

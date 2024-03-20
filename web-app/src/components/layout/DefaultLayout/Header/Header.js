@@ -9,30 +9,30 @@ import {
 import "./Header.css";
 
 const Header = () => {
-  const [user, setUser] = useState(getItem("user"));
-  const [accessToken, setAccessToken] = useState(getItem("accessToken"));
-  // console.log(accessToken);
+  const user = getItem("user");
+  const accessToken = getItem("accessToken");
+  console.log(user);
 
   const navigate = useNavigate();
   const handleLogout = () => {
     removeItem("user");
     removeItem("accessToken");
-    setUser(null);
-    setAccessToken(null);
     navigate("/");
   };
   const checkToken = () => {
-    const tokenExpiration = accessToken?.expires;
-    const currentTimestamp = Math.floor(Date.now() / 1000);
-
-    if (currentTimestamp > tokenExpiration) {
+    const tokenExpiration = new Date(accessToken?.expires).getTime();
+    const currentTimestamp = Date.now(); 
+    console.log(tokenExpiration-currentTimestamp);
+    // Kiểm tra xem token có hết hạn không và nếu thời gian giữa hiện tại và hết hạn lớn hơn 1 giờ (60 phút * 60 giây * 1000 milliseconds)
+    if (tokenExpiration && (tokenExpiration - currentTimestamp) > (60 * 60 * 1000)) {
+      // Xóa thông tin người dùng và accessToken khỏi bộ nhớ
       removeItem("user");
       removeItem("accessToken");
-      setUser(null);
-      setAccessToken(null);
-      navigate("/");
+  
+      // Chuyển hướng người dùng đến trang "/"
+      navigate("/SignIn");
     }
-  }
+  };
   const itemMenu = [
     "Trang Chủ",
     "Sản Phẩm",
@@ -49,7 +49,7 @@ const Header = () => {
           <img src={logo} alt="Logo Shop" className="w-5/6 h-full mr-2" />
         </Link>
         <div className="container-top">
-          {user&&checkToken() ? (
+          {user? (
             <div className="user-info">
               <img
                 src={

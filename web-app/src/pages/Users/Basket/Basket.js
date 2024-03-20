@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getBasketByUserId } from "~/services/basket.service";
+import { getBasketByUserId,getTotalCostOfUser } from "~/services/basket.service";
 import ProductOfBasket from "./ProductOfBasket";
 import { getItem } from "../../../components/LocalStorage/LocalStorage";
 const Basket = () => {
@@ -7,10 +7,13 @@ const Basket = () => {
   const accessToken = getItem("accessToken");
 
   const [products, setProuducts] = useState([]);
+  const [totalCost, setTotalCost] = useState(0);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await getBasketByUserId(user.id, accessToken.token);
+        const total = await getTotalCostOfUser(user.id, accessToken.token);
+        setTotalCost(parseInt(total.totalCost))
         setProuducts(result.data.purchasedProducts);
         console.log("productsOfBasket", products);
       } catch (error) {
@@ -20,22 +23,12 @@ const Basket = () => {
 
     fetchData();
   }, [user.id]);
-  useEffect(() => {
-    const checkTokenExpiration = () => {
-      // Kiểm tra hạn của token
-      const currentTimestamp = new Date().getTime() / 1000; // Đơn vị là giây
-      const tokenExpiration = accessToken.token.expiry; // Giả sử thông tin hết hạn của token lưu trong trường 'expiry'
-
-      if (currentTimestamp > tokenExpiration) {
-        // Token đã hết hạn, thực hiện các hành động phù hợp (ví dụ: đăng xuất người dùng, yêu cầu người dùng đăng nhập lại, ...)
-        console.log("Token has expired");
-      }
-    };
-    checkTokenExpiration();
-  }, [accessToken]);
+  
   if (!products || products.length === 0) {
     return <div>No products found</div>;
   }
+  
+
   return (
     <div className="product-list-container">
       <p className="product-list-content shadow bg-stone-300 w-full h-full">
@@ -44,10 +37,13 @@ const Basket = () => {
       {products && (
         <div className="">
           {products.map((item, index) => (
-            <ProductOfBasket props={item} key={index} />
+            <ProductOfBasket props={item} key={index} setTotalCost={setTotalCost} />
           ))}
         </div>
       )}
+      <div>
+        <p>Tổng tiền là : {totalCost}</p>
+      </div>
     </div>
   );
 };

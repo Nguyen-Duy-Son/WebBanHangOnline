@@ -19,6 +19,9 @@ basketRouter
     .route('/:userId')
     .get(roles(["user","admin"]),validate(basketValidation.getBasketByUserId), basketController.getBasketByUserId)
 basketRouter
+    .route('/totalCost/:userId')
+    .get(roles(["user"]), basketController.getTotalCostOfUser)
+basketRouter
     .route('/:basketId')
     .put(roles("user"),validate(basketValidation.updateBasket), basketController.updateBasket)
     .delete(roles("user"),validate(basketValidation.deleteBasket), basketController.deleteBasket);

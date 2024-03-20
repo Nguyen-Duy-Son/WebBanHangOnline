@@ -4,8 +4,8 @@ import ButBi from '~/assets/images/ButBi-MocKhoa.jpg';
 import AoMua from '~/assets/images/AoMua-Du.jpg';
 import USB from '~/assets/images/USB.jpg';
 import './Header.css';
-
-const Header = ({ user }) => {
+import { getItem } from '../../../LocalStorage/LocalStorage';
+const Header = () => {
     const images = [ButBi, AoMua, USB];
     const itemMenu = [
         'Trang Chủ',
@@ -16,7 +16,9 @@ const Header = ({ user }) => {
         'Liên Hệ',
     ];
     const [imgIndex, setImgIndex] = useState(0);
-    console.log("infor",user);
+    const user = getItem("user");
+    console.log(user);
+    const accessToken = getItem('accessToken');
     useEffect(() => {
         const interval = setInterval(() => {
             setImgIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -32,7 +34,7 @@ const Header = ({ user }) => {
                     <img src={logo} alt="Logo Shop" className="w-5/6 h-full mr-2" />
                 </a>
                 <div className="container-top">
-                    {user ? (
+                    {user&&accessToken ? (
                         // If props is not null, display user information
                         <div className="user-info">
                             <img src={user.avatar || 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg'} alt="User Avatar" className="avatar" />

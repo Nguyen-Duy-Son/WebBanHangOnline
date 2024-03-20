@@ -15,6 +15,22 @@ export const getBasketByUserId = async(userId,token)=>{
         throw error;
     }
 }
+export const getTotalCostOfUser = async(userId,token)=>{
+    
+    try{
+        const response = await axios.get(`http://localhost:5000/api/v1/baskets/totalCost/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        console.log("alo",response.data.totalCost);
+        return response.data;
+    }
+    catch(error){
+        console.log(error.message);
+        throw error;
+    }
+}
 export const addOrDeleteProductOfBasket = async (userId, token, productId, status) => {
     console.log(token);
     try {

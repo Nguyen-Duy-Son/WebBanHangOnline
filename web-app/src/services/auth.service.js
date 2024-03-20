@@ -18,7 +18,7 @@ export const login = async (data) => {
             'http://localhost:5000/api/v1/auth/login',
             data,
         );
-        return response.data;
+        return response;
     } catch (error) {
         console.log(error);
         throw error;

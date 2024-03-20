@@ -22,7 +22,8 @@ export default function Login() {
         password,
       };
       const dataSignIn = await login(data);
-      const accessToken = dataSignIn.accessToken;
+      console.log(dataSignIn);
+      const accessToken = dataSignIn.data.accessToken;
       setIsSubmitting(false);
       const response = await getUserByEmail(email);
       const user = response.data;

@@ -1,4 +1,5 @@
 const Basket = require("../models/basket.model");
+const Product = require("../models/product.model");
 const httpStatus = require("http-status");
 const ApiError = require("../utils/ApiError");
 
@@ -88,6 +89,23 @@ const addProductToBasket = async (productId, userId, status) => {
   await basketOfUser.save();
   return basketOfUser;
 };
+const totalMoneyOfUser = async (userId) => {
+  const basket = await Basket.findOne({ userId: userId });
+  let totalCost = 0;
+  await Promise.all(
+    basket.purchasedProducts.map(async (productItem) => {
+      const product = await Product.findOne({ _id: productItem.productId });
+      if (!product) {
+        throw new Error(`Product not found with id: ${productItem.productId}`);
+      }
+      totalCost += product.cost * productItem.numberOfProduct;
+    })
+  );
+  basket.totalCost = totalCost;
+  await basket.save();
+  return totalCost;
+};
+
 module.exports = {
   getBasketByUserId,
   getBaskets,
@@ -95,4 +113,5 @@ module.exports = {
   updateBasketById,
   deleteBasketById,
   addProductToBasket,
+  totalMoneyOfUser
 };

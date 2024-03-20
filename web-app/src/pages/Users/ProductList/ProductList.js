@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { getItem } from '../../../components/LocalStorage/LocalStorage';
 
 const ProductList = () => {
-    // const {user,accessToken} = getItem();
+    
     const [products, setProducts] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
@@ -22,7 +22,9 @@ const ProductList = () => {
 
         fetchData();
     }, []);
-
+    const handleAddProductToBasket = ()=>{
+        
+    }
     if (!products || products.length === 0) {
         return <div>No products found</div>;
     }

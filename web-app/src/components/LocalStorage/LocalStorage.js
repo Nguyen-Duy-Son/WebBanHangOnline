@@ -1,4 +1,3 @@
-// localStorage.js
 
 // Lưu thông tin vào LocalStorage
 function setItem(key, value) {
@@ -17,4 +16,4 @@ function removeItem(key) {
 }
 
 // Export các phương thức để sử dụng trong các module khác
-export { setItem, getItem, removeItem };
+export { setItem, getItem, removeItem};
