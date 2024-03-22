@@ -3,11 +3,12 @@ import { getProductById } from "../../../services/product.service";
 import {
   addOrDeleteProductOfBasket,
   getTotalCostOfUser,
+  getBasketByUserId
 } from "../../../services/basket.service";
 import { getItem } from "../../../components/LocalStorage/LocalStorage";
 import "./ProductOfBasket.css";
 
-const ProductOfBasket = ({ props,setTotalCost }) => {
+const ProductOfBasket = ({ props,setTotalCost ,setProuducts}) => {
   const user = getItem("user");
   const accessToken = getItem("accessToken");
   const [product, setProduct] = useState([]);
@@ -38,7 +39,6 @@ const ProductOfBasket = ({ props,setTotalCost }) => {
   const handleAddProduct = async () => {
     setNumber(number + 1);
     await updateBasket("add");
-    
   };
 
   const updateBasket = async (status) => {
@@ -52,6 +52,8 @@ const ProductOfBasket = ({ props,setTotalCost }) => {
       // await getTotalCostOfUser(user.id,accessToken.token)
       const total = await getTotalCostOfUser(user.id, accessToken.token);
       setTotalCost(parseInt(total.totalCost))
+      const products = await getBasketByUserId(user.id, accessToken.token);
+      setProuducts(products.data.purchasedProducts)
     } catch (error) {
       console.error("Error updating basket", error);
     }
@@ -62,7 +64,7 @@ const ProductOfBasket = ({ props,setTotalCost }) => {
       <div className="basket-item">
         <img src={product.image} alt={product.name} />
         <div className="">
-          <b>Tên Sản Phẩm </b>
+          <b>{product.name}</b>
           <p>Số lượng sản phẩm: {number}</p>
         </div>
         <div className="flex">

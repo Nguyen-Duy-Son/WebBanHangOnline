@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getAllProducts } from '../../../services/product.service';
-import {addOrDelete} from '../../../services/basket.service'
 import ProductItem from './Product';
 import './ProductList.css';
 import { useNavigate } from 'react-router-dom';
-import { getItem } from '../../../components/LocalStorage/LocalStorage';
 
 const ProductList = () => {
     
     const [products, setProducts] = useState([]);
-    const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -22,16 +19,12 @@ const ProductList = () => {
 
         fetchData();
     }, []);
-    const handleAddProductToBasket = ()=>{
-        
-    }
+    
     if (!products || products.length === 0) {
         return <div>No products found</div>;
     }
 
-    const handleDetailClick = (item) => {
-        navigate(`/SanPham/${item.id}`);
-    };
+    
 
     return (
         <div className="product-list-container">
@@ -42,12 +35,7 @@ const ProductList = () => {
                 {products.map((item, index) => (
                     <div className="product-item" key={index} >
                         <ProductItem props={item} key={index}/>
-                        <div className="button-container flex justify-between">
-                            <button className="buy-button">Mua hàng</button>
-                            <button className="detail-button" onClick={() => handleDetailClick(item)}>
-                                Chi tiết
-                            </button>
-                        </div>
+                        
                     </div>
                 ))}
             </div>

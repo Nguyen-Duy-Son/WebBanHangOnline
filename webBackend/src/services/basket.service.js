@@ -18,7 +18,6 @@ const getBaskets = async (filter, options) => {
 };
 
 const createBasket = async (basketBody) => {
-  console.log("aloo");
   const rawBasket = await Basket.findOne({ userId: basketBody.userId });
   if (rawBasket)
     throw new ApiError(httpStatus.NOT_FOUND, "Basket already exists");
@@ -72,7 +71,7 @@ const addProductToBasket = async (productId, userId, status) => {
       // Nếu sản phẩm đã tồn tại, giảm numberOfProduct đi 1
       const existingProduct =
         basketOfUser.purchasedProducts[existingProductIndex];
-      if (existingProduct.numberOfProduct >= 1) {
+      if (existingProduct.numberOfProduct > 1) {
         existingProduct.numberOfProduct -= 1;
       } else {
         // Nếu numberOfProduct là 1, xoá sản phẩm khỏi mảng purchasedProducts

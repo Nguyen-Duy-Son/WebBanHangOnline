@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 import imgcontent from "~/assets/images/img-content.jpg";
 import Snowfall from "react-snowfall";
+import { setItem,getItem } from "../../../components/LocalStorage/LocalStorage";
 import { register } from "../../../services/auth.service";
 import { getUserByEmail } from "../../../services/user.service";
 import { createBasketOfUser } from "../../../services/basket.service";
@@ -45,10 +46,11 @@ const SignUpForm = () => {
         confirmPassword,
       };
       const response = await register(data);
-      const accessToken = response.accessToken;
       const userData = await getUserByEmail(email);
-      if (accessToken) {
-        await createBasketOfUser(userData.data.id, accessToken.token);
+      setItem("accessToken", response.data.accessToken.token);
+      setItem("user",userData.data.userName);
+      if (userData!==null) {
+        await createBasketOfUser(userData.data.id, response.data.accessToken.token);
       }
       setShowSignIn(true);
       setShow(true);

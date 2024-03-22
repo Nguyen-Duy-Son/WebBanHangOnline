@@ -7,7 +7,9 @@ export const getBasketByUserId = async(userId,token)=>{
                 Authorization: `Bearer ${token}`,
             },
         });
-        console.log(response.data);
+        if(!response.data){
+            return false;
+        }
         return response.data;
     }
     catch(error){
@@ -32,7 +34,6 @@ export const getTotalCostOfUser = async(userId,token)=>{
     }
 }
 export const addOrDeleteProductOfBasket = async (userId, token, productId, status) => {
-    console.log(token);
     try {
         const response = await axios.post(`http://localhost:5000/api/v1/baskets/product`, {
             userId: `${userId}`,
